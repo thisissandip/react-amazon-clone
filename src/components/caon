@@ -1,0 +1,59 @@
+/* 		toast(
+			() => {
+				return (
+					<div className='noti-cont'>
+						<img className='noti-img' src={imgname} />
+						<div className='noti-msg'>
+							<div className='noti-title'>{name}</div>
+							<span>
+								<strong> Added to your cart</strong>
+							</span>
+						</div>
+					</div>
+				);
+			},
+			{
+				position: 'top-right',
+				// bg does not work	className: 'black-background',
+				//works	bodyClassName: 'grow-font-size',
+				autoClose: 3000,
+				hideProgressBar: true,
+				closeOnClick: true,
+				pauseOnHover: true,
+				progress: undefined,
+			}
+             
+); */
+
+
+						<ToastContainer
+							position='top-right'
+							autoClose={3000}
+							hideProgressBar
+							newestOnTop={false}
+							closeOnClick
+							rtl={false}
+							pauseOnFocusLoss
+							pauseOnHover
+						/>
+-----------------------------------------------------------------------------------------------------------
+
+							<TransitionGroup>
+						{cart.map((item) => (
+							<CSSTransition
+								key={item.id}
+								component={null}
+								timeout={200}
+								classNames='display'>
+								<div className='product-overflow-container'>
+									<CartProduct
+										key={item.id}
+										id={item.id}
+										img={item.imgname}
+										title={item.name}
+										price={item.price}
+									/>
+								</div>
+							</CSSTransition>
+						))}
+					</TransitionGroup>
