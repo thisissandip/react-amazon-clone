@@ -94,6 +94,7 @@ body {
 	justify-content: space-evenly;
 	right: 0;
 	top: 0;
+	padding: 1rem;
 	margin-right: 30px;
 	width: 29%;
 	height: 100px;
@@ -116,7 +117,7 @@ body {
 	cursor: pointer;
 	font-weight: 500;
 	padding: 5px 1rem;
-	width: 100%;
+	width: 90%;
 	margin: 0 auto;
 }
 
@@ -135,13 +136,14 @@ body {
 	font-weight: 500;
 	padding: 5px 5px;
 	height: 30px;
-	width: 30%;
+	width: 160px;
 	margin-bottom: 30px;
 }
 
 .checkout-btn:hover,
 .login-btn:hover,
-.del-prod-btn:hover {
+.del-prod-btn:hover,
+.place-o-btn:hover {
 	background: linear-gradient(to top, #e08703, rgb(255, 217, 120));
 }
 
@@ -216,6 +218,7 @@ body {
 }
 
 .signup-btn {
+	width: 100%;
 	background: gainsboro;
 }
 
@@ -259,6 +262,246 @@ body {
 	color: black;
 }
 
-/* .grow-font-size {
-	background: blue;
-} */
+.hidden-div {
+	display: none;
+}
+
+.checkout-page {
+	position: relative;
+	width: 100%;
+	height: 90vh;
+}
+
+.shipping-add-cont {
+	display: flex;
+}
+
+.checkout-page-content {
+	width: 65%;
+	border-radius: 5px;
+	padding: 0 2.6rem;
+	padding-top: 1.2rem;
+	font-family: var(--default-font);
+}
+
+.shipping-add-cont {
+	overflow: hidden;
+	min-height: 8rem;
+	padding: 1rem 0;
+}
+
+.checkout-label {
+	min-width: 20%;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.checkout-textarea {
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+	height: 6rem;
+	resize: none;
+	width: 80%;
+	outline: black;
+	font-family: var(--default-font);
+	font-size: 1rem;
+	transition: 0.2s all ease-in-out;
+}
+
+.checkout-textarea:focus {
+	border: 1px solid rgba(0, 0, 0, 0.28);
+}
+
+.single-pay-opt {
+	margin-bottom: 5px;
+}
+
+.single-pay-opt > label {
+	margin-left: 13px;
+}
+
+.optional-container {
+	padding: 0.7rem 0;
+}
+
+.place-cont {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: space-evenly;
+	right: 0;
+	top: 0;
+	margin-top: 1rem;
+	margin-right: 30px;
+	padding: 1.5rem;
+	width: 29%;
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-color: gainsboro;
+}
+
+.place-o-show-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.place-o-btn {
+	position: relative;
+	background: linear-gradient(to top, #efbf44, rgb(244, 210, 125));
+	font-size: 1rem;
+	color: var(--dark);
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 10px 1rem;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.place-o-show-details {
+	width: 100%;
+	margin-top: 10px;
+}
+.place-o-show-details > hr {
+	margin: 15px 0;
+}
+
+.order-details {
+	margin: 5px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.order-total {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: rgb(179, 0, 0);
+}
+
+@media screen and (max-width: 600px) {
+	.login-form {
+		width: 20rem;
+		border-radius: 5px;
+		border: 1px solid rgba(0, 0, 0, 0.3);
+		padding: 1.3rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.login-logo {
+		width: 140px;
+	}
+
+	.cart-page {
+		padding-top: 110px;
+	}
+	.card-title-cont {
+		margin: 0.2rem auto;
+		width: 90%;
+		padding: 0.8rem 1.5rem;
+		background-color: #fff;
+		background-color: #fff;
+	}
+
+	.cart-title {
+		font-size: 1.8rem;
+		font-weight: 600;
+	}
+
+	.cart-prod-container {
+		margin: 1rem auto;
+		height: 10rem;
+		width: 90%;
+	}
+	.cart-prod-details-cont {
+		width: 80%;
+	}
+
+	.cart-prod-img {
+		max-height: 120px;
+		max-width: 90px;
+		object-fit: contain;
+	}
+	.cart-prod-title {
+		font-size: 0.9rem;
+	}
+
+	.cart-prod-price {
+		font-size: 1rem;
+	}
+	.del-prod-cont {
+		font-size: 0.7rem;
+	}
+	.subtotal-cont {
+		position: relative;
+		margin: 10px auto;
+		width: 90%;
+	}
+	.checkout-page {
+		padding-top: 110px;
+	}
+	.checkout-page-content {
+		width: 100%;
+		padding: 0 1rem;
+	}
+	.shipping-add-cont {
+		flex-direction: column;
+		padding: 5px 0;
+	}
+	.checkout-textarea {
+		width: 100%;
+	}
+	.place-cont {
+		position: relative;
+		margin-right: 0px;
+		padding: 1.2rem;
+		width: 92%;
+		margin: 10px auto;
+		margin-bottom: 20px;
+	}
+
+	.place-o-show-details {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.place-o-btn {
+		position: relative;
+		background: linear-gradient(to top, #efbf44, rgb(244, 210, 125));
+		font-size: 1rem;
+		color: var(--dark);
+		border: none;
+		border-radius: 5px;
+		outline: none;
+		cursor: pointer;
+		font-weight: 500;
+		padding: 10px 1rem;
+		width: 100%;
+		margin: 10px auto;
+	}
+
+	.place-o-show-details {
+		width: 100%;
+		margin-top: 0px;
+	}
+	.place-o-show-details > hr {
+		margin: 15px 0;
+	}
+
+	.order-details {
+		margin: 5px 0;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.order-total {
+		font-size: 1.3rem;
+		font-weight: 600;
+		color: rgb(179, 0, 0);
+	}
+}

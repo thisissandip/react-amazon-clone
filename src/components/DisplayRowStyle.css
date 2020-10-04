@@ -1,9 +1,7 @@
 .display-all-products {
 	position: absolute;
-	top: 50vh;
-	z-index: 1;
-	width: 100%;
-	color: black;
+	top: 400px;
+	padding-bottom: 20px;
 }
 
 .product-row {
@@ -76,4 +74,32 @@
 
 .add-btn:hover {
 	background: linear-gradient(to top, #e08703, rgb(255, 217, 120));
+}
+
+@media only screen and (max-width: 720px) {
+	.display-all-products {
+		position: relative;
+		top: 10px;
+	}
+
+	.product-row {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.product-container {
+		cursor: pointer;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 90%;
+		border-radius: 10px;
+		background-color: #fff;
+		margin: 10px 0;
+		padding: 1rem;
+		box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+		transition: 0.2s all ease-in-out;
+	}
 }

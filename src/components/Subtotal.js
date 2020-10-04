@@ -1,22 +1,41 @@
 import React from 'react';
 import { useStateValue } from '../context/StateProvider';
-import { Link } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import Checkout from './Checkout';
 
 function Subtotal() {
-	const [{ cart, user }] = useStateValue();
+	const [{ cart, user, UserCart }] = useStateValue();
+	const history = useHistory();
 
 	const total = cart?.reduce((total, item) => item.price + total, 0);
 
+	const userCarttotal = UserCart?.reduce(
+		(total, item) => item.price + total,
+		0
+	);
+
+	const checkcart = () => {
+		if (!user) {
+			history.push('/login');
+		} else {
+			if (UserCart == 0) {
+				alert('You Have No Items In Your Cart!');
+				history.push('/');
+			} else {
+				history.push('/checkout');
+			}
+		}
+	};
+
 	return (
 		<div className='subtotal-cont'>
-			<div>
-				Subtotal ({cart?.length} items) : {total}{' '}
-			</div>
-			<Link
-				to={!user ? '/login' : '/checkout'}
-				className='link-tag checkout-btn-link'>
-				<button className='checkout-btn'>Proceed to Checkout</button>
-			</Link>
+			<strong>
+				Subtotal ({user ? UserCart?.length : cart?.length} items) : ₹
+				{user ? userCarttotal : total}{' '}
+			</strong>
+			<button onClick={checkcart} className='checkout-btn'>
+				Proceed to Checkout
+			</button>
 		</div>
 	);
 }

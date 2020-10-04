@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStateValue } from '../context/StateProvider';
+import { auth, db } from '../fire';
 
 function CartProduct({ id, img, title, price }) {
-	const [{ animate }, dispatch] = useStateValue();
+	const [state, dispatch] = useStateValue();
+
+	useEffect(() => {
+		if (state.docID) {
+			db.collection('users').doc(state.docID).update({
+				Cart: state.UserCart,
+			});
+		}
+	}, [state.UserCart]);
 
 	const removefromcart = () => {
-		dispatch({
-			type: 'REMOVE_FROM_CART',
-			payload: {
-				id: id,
-				name: title,
-				img: img,
-				price: price,
-			},
-		});
+		if (state.user) {
+			dispatch({
+				type: 'USER_REMOVE_FROM_CART',
+				payload: {
+					id: id,
+					name: title,
+					img: img,
+					price: price,
+				},
+			});
+		} else {
+			dispatch({
+				type: 'REMOVE_FROM_CART',
+				payload: {
+					id: id,
+					name: title,
+					img: img,
+					price: price,
+				},
+			});
+		}
 	};
 	return (
 		<div className='cart-prod-container'>

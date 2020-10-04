@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
-import { useHistory, Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import { auth, db } from '../fire';
-import SignUp from './SignUp';
-import { useStateValue } from '../context/StateProvider';
 
-function Login() {
-	const [{ user }, dispatch] = useStateValue();
+function SignUp() {
 	const history = useHistory();
+	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const loginuser = (e) => {
+	const signUp = (e) => {
 		e.preventDefault();
 		auth
-			.signInWithEmailAndPassword(email, password)
+			.createUserWithEmailAndPassword(email, password)
 			.then((user) => {
-				history.push('/');
+				db.collection('users').add({
+					Username: username,
+					Email: email,
+					Cart: [],
+					Order: [],
+				});
 			})
 			.catch((error) => alert(error.message));
+		auth.signOut();
+		setTimeout(() => {
+			auth
+				.signInWithEmailAndPassword(email, password)
+				.then((user) => {
+					history.push('/');
+				})
+				.catch((error) => alert(error.message));
+		}, 1000);
 	};
 
 	return (
@@ -29,7 +41,16 @@ function Login() {
 					className='login-logo'
 				/>
 				<form className='login-form'>
-					<label className='login-label-top'>Login</label>
+					<label className='login-label-top'>SignUp</label>
+					<label className='login-label'>
+						<strong>Username</strong>
+					</label>
+					<input
+						type='text'
+						value={username}
+						className='login-input'
+						onChange={(e) => setUsername(e.target.value)}
+					/>
 					<label className='login-label'>
 						<strong>Email</strong>
 					</label>
@@ -49,20 +70,19 @@ function Login() {
 						className='login-input'
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<button type='submit' onClick={loginuser} className='login-btn'>
-						Login
+
+					<button
+						type='submit'
+						onClick={(e) => {
+							signUp(e);
+						}}
+						className='signup-btn'>
+						Sign Up!
 					</button>
-					<label className='dummy-text'>
-						By continuing, you agree to Amazon's Conditions of Use and Privacy
-						Notice.{' '}
-					</label>
-					<Link to='/signup' className='link-tag'>
-						<button className='signup-btn'>New Here? Sign Up!</button>
-					</Link>
 				</form>
 			</div>
 		</div>
 	);
 }
 
-export default Login;
+export default SignUp;

@@ -57,3 +57,86 @@
 							</CSSTransition>
 						))}
 					</TransitionGroup>
+
+
+-----------------------------------------------------------------------------------------
+
+	if (state.user) {
+		const finaltotal = state.UserCart?.reduce(
+			(caltotal, item) => item.price + caltotal,
+			0
+		);
+		setTotal(finaltotal);
+	} else {
+		const finaltotal = state.cart?.reduce(
+			(caltotal, item) => item.price + caltotal,
+			0
+		);
+		setTotal(finaltotal);
+	}
+	-----------------------------------------------------------------
+						<li className='right-text' onClick={signout}>
+							<div className='nav-upper-text'>
+								Hello, {state.user ? state.Name : 'Guest'}
+							</div>
+							<div className='nav-lower-text'>
+								<strong>{state.user ? 'Sign Out' : 'Sign In'}</strong>
+							</div>
+						</li>
+
+-------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------
+
+<Link to={!state.user && '/login'} className='link-tag'>
+							<li className='right-text sign-out-opt nav-name-field '>
+								<div className='nav-upper-text'>
+									Hi, {!state.user && 'Guest'}
+								</div>
+								<div className='nav-lower-text '>
+									<strong>
+										{state.user
+											? state.Name.charAt(0)
+													.toUpperCase()
+													.concat(state.Name.slice(1))
+											: 'Sign In'}
+									</strong>
+								</div>
+								<div className='sign-arrow'>
+									<MdPlayArrow />
+								</div>
+								<div className='sign-out-cont'>
+									<button onClick={signout} className='sign-out-btn'>
+										{state.user ? 'Sign Out' : 'New Here? Sign Up'}
+									</button>
+								</div>
+							</li>
+						</Link>
+						<a
+							href='https://www.primevideo.com/'
+							target='_blank'
+							className='link-tag'>
+							<li className='right-text'>
+								<div className='nav-upper-text'>Try,</div>
+								<div className='nav-lower-text'>
+									<strong>Prime</strong>
+								</div>
+							</li>
+						</a>
+						<Link to={!state.user ? '/login' : '/orders'} className='link-tag'>
+							<li className='right-text'>
+								<div className='nav-upper-text'>Your </div>
+								<div className='nav-lower-text'>
+									<strong>Orders</strong>
+								</div>
+							</li>
+						</Link>
+						<Link to='/cart' className='link-tag'>
+							<li className='cart-cont'>
+								<div className='nav-upper-text'>
+									<AiOutlineShoppingCart className='cart-logo' />
+								</div>
+								<div className='nav-lower-text cart-num'>
+									{state.user ? state.UserCart.length : state.cart?.length}
+								</div>
+							</li>
+						</Link>

@@ -5,7 +5,7 @@ import { useStateValue } from '../context/StateProvider';
 import { CSSTransitionGroup } from 'react-transition-group';
 
 const CartPage = () => {
-	const [{ cart, user }] = useStateValue();
+	const [{ cart, user, UserCart }] = useStateValue();
 
 	return (
 		<>
@@ -19,15 +19,25 @@ const CartPage = () => {
 						transitionName='display'
 						transitionEnterTimeout={500}
 						transitionLeaveTimeout={200}>
-						{cart.map((item) => (
-							<CartProduct
-								key={item.id}
-								id={item.id}
-								img={item.imgname}
-								title={item.name}
-								price={item.price}
-							/>
-						))}
+						{!user
+							? cart.map((item) => (
+									<CartProduct
+										key={item.id}
+										id={item.id}
+										img={item.imgname}
+										title={item.name}
+										price={item.price}
+									/>
+							  ))
+							: UserCart.map((item) => (
+									<CartProduct
+										key={item.id}
+										id={item.id}
+										img={item.imgname}
+										title={item.name}
+										price={item.price}
+									/>
+							  ))}
 					</CSSTransitionGroup>
 				</div>
 

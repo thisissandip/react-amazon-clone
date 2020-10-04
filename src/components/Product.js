@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useStateValue } from '../context/StateProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { auth, db } from '../fire';
+import uuid from 'react-uuid';
 
 const Product = ({ id, name, stars, price, imgname }) => {
 	const [state, dispatch] = useStateValue();
 
+	useEffect(() => {
+		if (state.docID) {
+			db.collection('users').doc(state.docID).update({
+				Cart: state.UserCart,
+			});
+		}
+	}, [state.UserCart]);
+
 	const addtocart = () => {
-		dispatch({
-			type: 'ADD_TO_BASKET',
-			payload: {
-				id: id,
-				name: name,
-				price: price,
-				imgname: imgname,
-			},
-		});
+		if (state.user) {
+			dispatch({
+				type: 'USER_ADD_TO_BASKET',
+				payload: {
+					randomid: uuid(),
+					id: id,
+					name: name,
+					price: price,
+					imgname: imgname,
+				},
+			});
+		} else {
+			dispatch({
+				type: 'ADD_TO_BASKET',
+				payload: {
+					id: id,
+					name: name,
+					price: price,
+					imgname: imgname,
+				},
+			});
+		}
+
 		toast(
 			() => {
 				return (
@@ -32,8 +56,6 @@ const Product = ({ id, name, stars, price, imgname }) => {
 			},
 			{
 				position: 'top-right',
-				// bg does not work	className: 'black-background',
-				//works	bodyClassName: 'grow-font-size',
 				autoClose: 1000,
 				hideProgressBar: true,
 				closeOnClick: true,
