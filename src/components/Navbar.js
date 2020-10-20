@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import './StyleNavbar.css';
-import { AiOutlineShoppingCart, AiOutlineSearch } from 'react-icons/ai';
-import { MdPlayArrow } from 'react-icons/md';
-import { useStateValue } from '../context/StateProvider';
-import { auth, db } from '../fire';
-import { useWindowWidth } from '@react-hook/window-size';
-import { FiMenu } from 'react-icons/fi';
+import {AiOutlineShoppingCart, AiOutlineSearch} from 'react-icons/ai';
+import {MdPlayArrow} from 'react-icons/md';
+import {useStateValue} from '../context/StateProvider';
+import {auth, db} from '../fire';
+import {useWindowWidth} from '@react-hook/window-size';
+import {FiMenu} from 'react-icons/fi';
 
 const Navbar = () => {
 	const [state, dispatch] = useStateValue();
@@ -53,7 +53,7 @@ const Navbar = () => {
 
 	const removesidebar = () => {
 		const sidebar = document.querySelector('.sidebar-cont');
-		sidebar.style.left = '-100rem';
+		sidebar.style.left = '-1000rem';
 		setshsidebar(true);
 	};
 
@@ -66,10 +66,7 @@ const Navbar = () => {
 							<div className='nav-mobile-text'>Your Orders </div>
 						</li>
 					</Link>
-					<a
-						href='https://www.primevideo.com/'
-						target='_blank'
-						className='link-tag'>
+					<a href='https://www.primevideo.com/' target='_blank' className='link-tag'>
 						<li className='right-text'>
 							<div className='nav-mobile-text'>Try, Prime</div>
 						</li>
@@ -97,13 +94,7 @@ const Navbar = () => {
 						</div>
 						<Link to='/' className='link-tag'>
 							<li className='nav-link'>
-								{
-									<img
-										className='logo'
-										src={require('../imgs/logo.png')}
-										alt='logo'
-									/>
-								}
+								{<img className='logo' src={require('../imgs/logo.png')} alt='logo' />}
 							</li>
 						</Link>
 						<li className='search-bar-container'>
@@ -122,15 +113,11 @@ const Navbar = () => {
 					<ul className='nav-items right-links'>
 						<Link to={!state.user && '/login'} className='link-tag'>
 							<li className='right-text sign-out-opt nav-name-field '>
-								<div className='nav-upper-text'>
-									Hi, {!state.user && 'Guest'}
-								</div>
+								<div className='nav-upper-text'>Hi, {!state.user && 'Guest'}</div>
 								<div className='nav-lower-text '>
 									<strong>
 										{state.user
-											? state.Name.charAt(0)
-													.toUpperCase()
-													.concat(state.Name.slice(1))
+											? state.Name.charAt(0).toUpperCase().concat(state.Name.slice(1))
 											: 'Sign In'}
 									</strong>
 								</div>
@@ -144,10 +131,7 @@ const Navbar = () => {
 								</div>
 							</li>
 						</Link>
-						<a
-							href='https://www.primevideo.com/'
-							target='_blank'
-							className='link-tag'>
+						<a href='https://www.primevideo.com/' target='_blank' className='link-tag'>
 							<li className='right-text'>
 								<div className='nav-upper-text'>Try,</div>
 								<div className='nav-lower-text'>
@@ -192,13 +176,7 @@ const Navbar = () => {
 							</div>
 							<Link to='/' className='link-tag'>
 								<li onClick={removesidebar} className='nav-link'>
-									{
-										<img
-											className='logo'
-											src={require('../imgs/logo.png')}
-											alt='logo'
-										/>
-									}
+									{<img className='logo' src={require('../imgs/logo.png')} alt='logo' />}
 								</li>
 							</Link>
 							<div className='mobile-menu'></div>

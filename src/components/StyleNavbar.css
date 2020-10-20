@@ -154,7 +154,7 @@ li {
 }
 
 .sidebar-cont {
-	left: -100rem;
+	left: -1000rem;
 	position: absolute;
 	z-index: 200000000000;
 	margin-top: 40px;
