@@ -10,9 +10,7 @@ export let myinitialstate = {
 export const myreducer = (state, action) => {
 	switch (action.type) {
 		case 'ADD_TO_BASKET': {
-			const prodexist = state.cart.filter(
-				(item) => item.id == action.payload.id
-			);
+			const prodexist = state.cart.filter((item) => item.id == action.payload.id);
 			if (prodexist > 1) {
 				alert('You already have this product!');
 				return {
@@ -33,9 +31,7 @@ export const myreducer = (state, action) => {
 		}
 		case 'USER_REMOVE_FROM_CART': {
 			let existingcart = [...state.UserCart];
-			let newcart = existingcart.filter(
-				(item) => item.id !== action.payload.id
-			);
+			let newcart = existingcart.filter((item) => item.id !== action.payload.id);
 			return {
 				...state,
 				UserCart: newcart,
@@ -43,9 +39,7 @@ export const myreducer = (state, action) => {
 		}
 		case 'REMOVE_FROM_CART': {
 			let existingcart = [...state.cart];
-			let newcart = existingcart.filter(
-				(item) => item.id !== action.payload.id
-			);
+			let newcart = existingcart.filter((item) => item.id !== action.payload.id);
 
 			return {
 				...state,
